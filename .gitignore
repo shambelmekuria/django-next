@@ -1,0 +1,49 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.so
+*.pyo
+*.pyd
+*.python-version
+
+# ---- Virtual Environments ----
+venv/
+.venv/
+
+
+
+# ---- Django ----
+# SQLite database
+db.sqlite3
+db.sqlite3-journal
+
+# Django static and media files (generated)
+staticfiles/
+static/
+media/
+
+# Local settings
+# If you have a local settings file
+*local_settings.py
+*.secret
+
+# ---- Logs ----
+*.log
+logs/
+debug.log
+
+# ---- Byte-compiled / optimized / DLL files ----
+*.pb.pb
+*.pot
+*.mo
+
+# ---- Environment variables ----
+.env
+*.env
+
+
+
+# ---- IDE / Editor ----
+
+.vscode/
+
