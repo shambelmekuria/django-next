@@ -1,0 +1,21 @@
+Fix git conflict
+
+✅ Option 1 — Commit your changes (RECOMMENDED)
+git add rav.yaml
+git commit -m "Update rav.yaml"
+git pull --tags origin main
+
+✅ Option 2 — Stash your changes (temporary save)
+
+This saves your change, pulls safely, then restores your file.
+
+git stash
+git pull --tags origin main
+git stash pop
+
+
+If you get conflicts after stash pop, you must fix them manually.
+
+✅ Option 3 — Discard your local changes (WARNING: loses your edits)
+git checkout -- rav.yaml
+git pull --tags origin main

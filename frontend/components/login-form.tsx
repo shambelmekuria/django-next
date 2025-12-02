@@ -62,12 +62,13 @@ export function LoginForm({
    try{
      const res = await axios.post(LOGIN_URL, data)
     if(res.data){
-      // router.replace('/')
-      console.log(res.data)
+      router.replace('/')
+     
     }
    }
-   catch{
+   catch(error){
     serError('Invaild username or password')
+    console.log(error)
    }
     
       
