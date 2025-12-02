@@ -3,10 +3,10 @@ from typing import List
 from .models import WaitlistEntry
 from .schemas import WaitlistsListSchema,WaitlistsCreateSchema,WaitlistsDetailSchema
 from django.shortcuts import get_object_or_404
-
+from ninja_jwt.authentication import JWTAuth
 router = Router()
 
-@router.get('',response=List[WaitlistsListSchema])
+@router.get('',response=List[WaitlistsListSchema],auth=JWTAuth())
 def list_waitlist_entries(request):
     return WaitlistEntry.objects.all()
 
