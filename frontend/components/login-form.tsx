@@ -39,6 +39,7 @@ const formSchema = z.object({
 })
 
 type loginFormType = z.infer<typeof formSchema>
+const LOGIN_URL = 'api/login'
 
 
 export function LoginForm({
@@ -59,7 +60,7 @@ export function LoginForm({
   async function onSubmit(data: loginFormType) {
  
    try{
-     const res = await axios.post('http://127.0.0.1:8001/api/token/pair', data)
+     const res = await axios.post(LOGIN_URL, data)
     if(res.data){
       // router.replace('/')
       console.log(res.data)
@@ -122,6 +123,7 @@ export function LoginForm({
                       aria-invalid={fieldState.invalid}
                       autoComplete="password"
                       className="h-10"
+                      type="password"
                     />
 
                     {fieldState.invalid && (
