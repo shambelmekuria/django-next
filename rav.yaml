@@ -1,3 +1,9 @@
 scripts:
   server:
-    - cd backend && py manage.py runserver 8001
+    - cd backend && python3  manage.py runserver 8001
+  makemigrations:
+    - cd backend && python3 manage.py makemigrations
+  migrate:
+    - cd backend && python3  manage.py migrate
+  frontend:
+    - cd frontend && npm run dev
