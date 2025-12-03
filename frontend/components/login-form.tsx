@@ -23,6 +23,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { useAuth } from "./auth-provider"
 
 
 
@@ -46,8 +47,9 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const [error , serError] = useState("")
-  const router = useRouter()
+  const [error , serError] = useState("");
+  const auth = useAuth();
+  const router = useRouter();
   const form = useForm<loginFormType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -62,8 +64,8 @@ export function LoginForm({
    try{
      const res = await axios.post(LOGIN_URL, data)
     if(res.data){
-      router.replace('/')
-     
+       auth?.login()
+  
     }
    }
    catch(error){

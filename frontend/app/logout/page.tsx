@@ -1,4 +1,5 @@
 "use client"
+import { useAuth } from '@/components/auth-provider'
 import { Button } from '@/components/ui/button'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
@@ -7,13 +8,14 @@ import { useForm } from 'react-hook-form'
 
 const LOGOUT_URL ='api/logout'
 export default function Pages() {
-    const router = useRouter()
+    const auth = useAuth()
     const logoutForm = useForm()
     const onSubmit = async ()=>{
         const response = await axios.post(LOGOUT_URL,{})
-        console.log("I am clicked")
+       
         if (response){
-            router.replace('/login')
+            auth?.logout()
+             console.log("I am clicked")
         }
 
     }

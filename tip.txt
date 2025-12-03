@@ -1,0 +1,7 @@
+linke are divede into two
+User link (home ,dashbaord etc)
+non user link(login,signup)
+
+user link divide into many
+like authenticated or not 
+authenticated:true or false
