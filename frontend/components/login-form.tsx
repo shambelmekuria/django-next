@@ -60,11 +60,13 @@ export function LoginForm({
 
   
   async function onSubmit(data: loginFormType) {
+   let result = {}
  
    try{
      const res = await axios.post(LOGIN_URL, data)
+     result = res
     if(res.data){
-       auth?.login()
+       auth?.login(result?.username)
   
     }
    }
