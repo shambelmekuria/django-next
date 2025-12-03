@@ -19,7 +19,7 @@ export default function Navbar({className}:NavbarProps) {
     <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <BrandLink displayName={true} />
         {NavLinks.map((navLinkItem, idx)=>{
-            const shouldHide = !auth.isAuthenticated &&navLinkItem.authRequired
+            const shouldHide = !auth?.isAuthenticated &&navLinkItem.authRequired
 
             return shouldHide ? null : <Link
                 href={navLinkItem.href}
@@ -35,7 +35,7 @@ export default function Navbar({className}:NavbarProps) {
         <BrandLink displayName={true} />
     </div>
     <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-      {auth.isAuthenticated ?
+      {auth?.isAuthenticated ?
       <div className="ml-auto">
         <AccountDropdown />
         </div>
