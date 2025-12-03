@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { CircleUser, Menu, Package2, Search } from "lucide-react"
+import Link from "next/link";
+import { CircleUser, Menu, Package2, Search } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,31 +11,35 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
-import { useRouter } from "next/navigation"
-import { useAuth } from "../auth-provider"
+import { useRouter } from "next/navigation";
+import { useAuth } from "../auth-provider";
 
 type AccountDropdownProps = {
-  className?:string
+  className?: string;
+};
 
-}
+export default function AccountDropdown({ className }: AccountDropdownProps) {
+  const auth = useAuth();
+  const router = useRouter();
 
-
-export default function AccountDropdown({className}:AccountDropdownProps) {
-    const auth = useAuth()
-    const router = useRouter()
-
-    return  <DropdownMenu>
-    <DropdownMenuTrigger asChild>
-    <Button variant="secondary" size="icon" className="rounded-full">
-        <CircleUser className="h-5 w-5" />
-        <span className="sr-only">Toggle user menu</span>
-    </Button>
-    </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-        <DropdownMenuLabel>{auth?.username? auth?.username : "Account"}</DropdownMenuLabel>
-        <DropdownMenuItem onClick={e=> router.push('/logout')}>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="secondary" size="icon" className="rounded-full">
+          <CircleUser className="h-5 w-5" />
+          <span className="sr-only">Toggle user menu</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>
+          {auth?.username ? auth?.username : "Account"}
+        </DropdownMenuLabel>
+        <DropdownMenuItem onClick={(e) => router.push("/logout")}>
+          Logout
+        </DropdownMenuItem>
+      </DropdownMenuContent>
     </DropdownMenu>
+  );
 }

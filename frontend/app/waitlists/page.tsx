@@ -4,6 +4,7 @@ import { useAuth } from '@/components/auth-provider';
 import { ModeToggle } from '@/components/theme-mode-toggle';
 import React, { useEffect } from 'react';
 import useSWR from 'swr';
+import { WaitlistForm } from './forms';
 
 type FetchError = Error & {
   info?: any;
@@ -42,6 +43,9 @@ export default function Page() {
 
   return (
     <div>
+    <div className="max-w-xs mx-auto">
+      <WaitlistForm/>
+    </div>
       <ModeToggle/>
       <p>{auth?.isAuthenticated ? "Hello User" : "Hello Guest"}</p>
       {JSON.stringify(data)}

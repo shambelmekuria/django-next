@@ -41,7 +41,7 @@ export default function Navbar({className}:NavbarProps) {
         </div>
     : <div className="ml-auto space-x-2">
         {NonUserLinks.map((navLinkItem, idx)=>{
-            const shouldHide = !auth.isAuthenticated &&navLinkItem.authRequired
+            const shouldHide = !auth?.isAuthenticated &&navLinkItem.authRequired
 
             return shouldHide ? null : <Link
                 href={navLinkItem.href}
