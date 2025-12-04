@@ -34,7 +34,7 @@ export default function AccountDropdown({ className }: AccountDropdownProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
-          {auth?.username ? auth?.username : "Account"}
+          {auth?.username ? auth.username : "Account"}
         </DropdownMenuLabel>
         <DropdownMenuItem onClick={(e) => router.push("/logout")}>
           Logout

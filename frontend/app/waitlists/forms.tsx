@@ -3,14 +3,6 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   Field,
   FieldDescription,
   FieldError,
@@ -36,9 +28,9 @@ export function WaitlistForm({
   ...props
 }: React.ComponentProps<"div">) {
   const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState({});
   const [error, setError] = useState("");
 
-  const router = useRouter();
   const form = useForm<loginFormType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,9 +39,13 @@ export function WaitlistForm({
   });
 
   async function onSubmit(data: loginFormType) {
+    // Reset If before error exit for 2nd times
+    setMessage("");
+    setErrors({});
+    setError("");
     try {
       const res = await axios.post(WAITLIST_API_URL, data);
-      if (res.data) {
+      if (res.status === 200) {
         setMessage("Thank You for Joining");
       }
     } catch (error) {

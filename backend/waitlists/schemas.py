@@ -1,10 +1,15 @@
 from ninja import Schema
 from datetime import datetime
 from pydantic import  EmailStr
+from typing import List,Any
 
 
 class WaitlistsCreateSchema(Schema):
     email:EmailStr
+    
+
+class ErrorWaitlistsCreateSchema(Schema):
+    email:List[Any]
     
 class WaitlistsDetailSchema(Schema):
     id :int
