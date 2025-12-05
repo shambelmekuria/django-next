@@ -22,6 +22,7 @@ staticfiles/
 static/
 media/
 
+
 # Local settings
 # If you have a local settings file
 *local_settings.py

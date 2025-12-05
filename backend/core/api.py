@@ -8,7 +8,7 @@ api = NinjaExtraAPI() # Import from ninja extra not ninja
 api.register_controllers(NinjaJWTDefaultController)
 
 # import routers from each apps
-api.add_router('/waitlist/','waitlists.api.router')
+api.add_router('/waitlists/','waitlists.api.router')
 
 # auth = jwtAuth means in django @loginrequired
 @api.get('me/',response=UserSchema,auth=helpers.api_auth_user_required)

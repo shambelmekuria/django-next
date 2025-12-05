@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { z } from "zod";
+import { email, z } from "zod";
 import {
   Field,
   FieldDescription,
@@ -43,29 +43,40 @@ export function WaitlistForm({
     setMessage("");
     setErrors({});
     setError("");
-    try {
-      const res = await axios.post(WAITLIST_API_URL, data);
-      if (res.status === 200) {
-        setMessage("Thank You for Joining");
-      }
-    } catch (error) {
-      setError(
-        "There was an error with your requests . Please try again your."
-      );
+     const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }
+         const response = await fetch(WAITLIST_API_URL, requestOptions)
+        // const data = await response.json()
+        if (response.status === 201 || response.status === 200) {
+            setMessage("Thank you for joining")
+        } else {
+              const data = await response.json()
+              console.log(data)
+              setErrors(data)
+              if (!data.email) {
+                setError("There was an error with your request. Please try again.")
+              }
+        }
+ 
 
-      console.log(error);
-    }
   }
 
   return (
     <div className={cn("flex flex-col gap-6 w-full", className)} {...props}>
-      <div>{message && message}</div>
-      <div>{error && error}</div>
+      
+      
       <form
         id="login-form"
         onSubmit={form.handleSubmit(onSubmit)}
         method="post"
       >
+        <div>{message && <p className="my-3 p-3 bg-green-100 text-green-800">{message} </p>}</div>
+        <div>{error && <p className=" my-3 p-3 bg-red-100 text-red-800">{error} </p>}</div>
         <FieldGroup>
           <Controller
             name="email"

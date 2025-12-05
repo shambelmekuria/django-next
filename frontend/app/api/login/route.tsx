@@ -1,4 +1,5 @@
 "use server";
+import { DJANGO_API_ENDPOINT } from "@/app/config/defualt";
 import {
   getRefreshToken,
   getToken,
@@ -8,13 +9,13 @@ import {
 import axios from "axios";
 import { NextResponse } from "next/server";
 
-const API_URL = "http://127.0.0.1:8001/api/token/pair";
+const DJANGO_API_LOGIN_URL = `${DJANGO_API_ENDPOINT}/token/pair`;
 export async function POST(request: Request) {
   const token = await getToken();
   const refreshToken = await getRefreshToken();
   const data = await request.json();
   try {
-    const response = await axios.post(API_URL, data);
+    const response = await axios.post(DJANGO_API_LOGIN_URL, data);
     const { access, refresh } = response.data;
     setToken(access);
     setRefreshToken(refresh);

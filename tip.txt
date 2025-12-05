@@ -5,3 +5,14 @@ non user link(login,signup)
 user link divide into many
 like authenticated or not 
 authenticated:true or false
+
+Generate Djang secret KEy
+
+open shell
+
+1. from django.core.management.utils import get_random_secret_key
+
+2. get_random_secret_key()
+
+
+

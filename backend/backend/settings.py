@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,18 +10,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e^i1fl94xx!nu6fwr)u4=18k%kz_tz(nk(yt)3^w4^&x=1huk$'
+SECRET_KEY = config('DJANGO_SECRET_KEY',cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DJANGO_DEBUG ',cast=bool,default = True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+     "unfold",
+    'django.contrib.admin', 
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -119,8 +121,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = []
 
+ENV_CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS',cast =str,default = '')
+
+for orgin in ENV_CORS_ALLOWED_ORIGINS.split(','):
+    CORS_ALLOWED_ORIGINS.append(f"{orgin}".strip().lower())
 
 NINJA_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),

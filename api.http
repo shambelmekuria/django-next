@@ -7,5 +7,4 @@ Content-Type: application/json
 }
 
 ###
-GET http://127.0.0.1:8001/api/me HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NjQ1NTY1LCJpYXQiOjE3NjQ2NDUyNjUsImp0aSI6IjE5OTA3NmQwMjcwMzQ0NzZhMjYxMjFjZWM2MjllZDViIiwidXNlcl9pZCI6MX0.hcwSlps3N131y-pbWiVAnf1Pn76Ip1xOo45h2IriD2k
+GET http://127.0.0.1:9000/api/waitlist/ HTTP/1.1
