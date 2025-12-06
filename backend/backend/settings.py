@@ -21,7 +21,7 @@ ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
-     "unfold",
+    #  "unfold",
     'django.contrib.admin', 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -121,12 +121,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CORS_ALLOWED_ORIGINS = []
+CORS_ALLOWED_ORIGINS = [config('CORS_ALLOWED_ORIGINS',cast =str,default = '',)
+]
+# ENV_CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS',cast =str,default = '')
 
-ENV_CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS',cast =str,default = '')
-
-for orgin in ENV_CORS_ALLOWED_ORIGINS.split(','):
-    CORS_ALLOWED_ORIGINS.append(f"{orgin}".strip().lower())
+# for orgin in ENV_CORS_ALLOWED_ORIGINS.split(','):
+#     CORS_ALLOWED_ORIGINS.append(f"{orgin}".strip().lower())
 
 NINJA_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
