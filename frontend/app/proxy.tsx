@@ -25,6 +25,7 @@ export default class APIProxy {
     catch (error) {
       data = {
         message: "Can`t reach API server", error: error,
+        endpoint:endpoint,
         status: 500
       };
     }

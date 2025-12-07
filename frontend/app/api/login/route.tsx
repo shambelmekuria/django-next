@@ -11,8 +11,6 @@ import { NextResponse } from "next/server";
 
 const DJANGO_API_LOGIN_URL = `${DJANGO_API_ENDPOINT}/token/pair`;
 export async function POST(request: Request) {
-  const token = await getToken();
-  const refreshToken = await getRefreshToken();
   const data = await request.json();
   try {
     const response = await axios.post(DJANGO_API_LOGIN_URL, data);
